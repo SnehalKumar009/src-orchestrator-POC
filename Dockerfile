@@ -17,5 +17,7 @@ RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTr
 # Copy application code
 COPY . .
 
-# Default command: run the demo
-CMD ["python", "-m", "demo"]
+EXPOSE 8000
+
+# Default command: run FastAPI server
+CMD ["uvicorn", "src.api.app:app", "--host", "0.0.0.0", "--port", "8000"]

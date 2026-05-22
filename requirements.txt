@@ -8,5 +8,9 @@ qdrant-client>=1.9,<2.0
 # Embeddings (local model)
 sentence-transformers>=3.0,<4.0
 
+# REST API
+fastapi>=0.115,<1.0
+uvicorn>=0.34,<1.0
+
 # Environment config
 python-dotenv>=1.0,<2.0
