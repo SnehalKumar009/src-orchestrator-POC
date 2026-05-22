@@ -84,18 +84,21 @@ class SrcFinding(Base):
     )
     component: Mapped[str] = mapped_column(String(200), nullable=False)
     status: Mapped[str] = mapped_column(
-        SAEnum(ComplianceStatus), default=ComplianceStatus.NON_COMPLIANT
+        SAEnum(ComplianceStatus, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        default=ComplianceStatus.NON_COMPLIANT
     )
     reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     fix_steps: Mapped[str | None] = mapped_column(Text, nullable=True)
     category: Mapped[str | None] = mapped_column(String(50), nullable=True)
     risk_area: Mapped[str | None] = mapped_column(String(50), nullable=True)
     delta_type: Mapped[str | None] = mapped_column(
-        SAEnum(DeltaType), default=DeltaType.UNCHANGED
+        SAEnum(DeltaType, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        default=DeltaType.UNCHANGED
     )
     routed_agent: Mapped[str | None] = mapped_column(String(50), nullable=True)
     fix_status: Mapped[str] = mapped_column(
-        SAEnum(FixStatus), default=FixStatus.PENDING
+        SAEnum(FixStatus, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        default=FixStatus.PENDING
     )
     fixed_by: Mapped[str | None] = mapped_column(String(100), nullable=True)
     fixed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
