@@ -10,14 +10,6 @@ class Base(DeclarativeBase):
     pass
 
 
-def init_db():
-    """Create all tables."""
-    from src.db.models import (
-        Scan, SrcFinding, SrcRequirement, FixHistory, ReportUpdate, ScanReport
-    )
-    Base.metadata.create_all(bind=engine)
-
-
 def get_session():
     """Get a new DB session."""
     return SessionLocal()

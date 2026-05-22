@@ -17,8 +17,8 @@ def main():
     print("SRC Orchestrator — RAG POC Demo")
     print("=" * 80)
 
-    # ── Step 1: Initialize DB and seed ─────────────────────────────────────
-    print("\n[1/4] Initializing database and seeding sample data...")
+    # ── Step 1: Seed data (tables already created by PostgreSQL init script)
+    print("\n[1/4] Seeding sample data into database...")
     from src.db.seed import seed_database
     seed_database()
 

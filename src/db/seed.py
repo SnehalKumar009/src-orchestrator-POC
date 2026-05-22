@@ -1,6 +1,6 @@
 """Seed the database with realistic sample data for POC."""
 
-from src.db.database import init_db, get_session
+from src.db.database import get_session
 from src.db.models import Scan, SrcRequirement, SrcFinding, ComplianceStatus, FixStatus, DeltaType
 
 
@@ -85,7 +85,6 @@ SAMPLE_FINDINGS = [
 
 def seed_database():
     """Populate the database with sample data."""
-    init_db()
     session = get_session()
 
     try:
