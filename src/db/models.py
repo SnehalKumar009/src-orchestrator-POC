@@ -84,7 +84,7 @@ class SrcFinding(Base):
     )
     component: Mapped[str] = mapped_column(String(200), nullable=False)
     status: Mapped[str] = mapped_column(
-        SAEnum(ComplianceStatus, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        SAEnum(ComplianceStatus, values_callable=lambda e: [x.value for x in e], create_type=False),
         default=ComplianceStatus.NON_COMPLIANT
     )
     reason: Mapped[str | None] = mapped_column(Text, nullable=True)
@@ -92,12 +92,12 @@ class SrcFinding(Base):
     category: Mapped[str | None] = mapped_column(String(50), nullable=True)
     risk_area: Mapped[str | None] = mapped_column(String(50), nullable=True)
     delta_type: Mapped[str | None] = mapped_column(
-        SAEnum(DeltaType, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        SAEnum(DeltaType, values_callable=lambda e: [x.value for x in e], create_type=False),
         default=DeltaType.UNCHANGED
     )
     routed_agent: Mapped[str | None] = mapped_column(String(50), nullable=True)
     fix_status: Mapped[str] = mapped_column(
-        SAEnum(FixStatus, values_callable=lambda e: [x.value for x in e], create_constraint=False, native_enum=False),
+        SAEnum(FixStatus, values_callable=lambda e: [x.value for x in e], create_type=False),
         default=FixStatus.PENDING
     )
     fixed_by: Mapped[str | None] = mapped_column(String(100), nullable=True)
