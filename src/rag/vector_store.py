@@ -79,18 +79,19 @@ def query(
         ]
         query_filter = Filter(must=conditions)
 
-    results = client.search(
+    results = client.query_points(
         collection_name=RAG_COLLECTION_NAME,
-        query_vector=query_embedding,
+        query=query_embedding,
         limit=n_results,
         query_filter=query_filter,
     )
 
     # Format results to match expected interface
-    result_ids = [str(r.id) for r in results]
-    result_docs = [r.payload.get("text", "") for r in results]
-    result_metas = [{k: v for k, v in r.payload.items() if k != "text"} for r in results]
-    result_dists = [1.0 - r.score for r in results]  # cosine similarity → distance
+    points = results.points
+    result_ids = [str(p.id) for p in points]
+    result_docs = [p.payload.get("text", "") for p in points]
+    result_metas = [{k: v for k, v in p.payload.items() if k != "text"} for p in points]
+    result_dists = [1.0 - p.score for p in points]  # cosine similarity → distance
 
     return {
         "ids": [result_ids],
